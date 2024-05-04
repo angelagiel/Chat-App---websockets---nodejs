@@ -1,0 +1,45 @@
+WEBSOCKETS
+
+
+How do we create one how do we use them?
+
+- alllows you to create real time features to your applications
+
+
+===============STEPS==========
+1. Install NODEJS (nodejs.org)
+2. Download what is recommended for most users
+3. Open VS CODE [start out with an empty folder]
+4. Open Terminal Window (ctrl + `)
+5. Check to see if you have node installed > node - v
+    -as of May 04, 2024: v20.11.0
+    -as of May 04, 2024: v20.12.0 (new installation)
+6. Create some directories
+    Folder 1: Server
+    Folder 2: App [for the frontend application]
+7. Open terminal window again (ctrl + `)
+8. Change Directory to Server > cd server
+        - this is to make sure that you are now in the folder that you named and the server directory.
+9. Now initialize the project with NPM (node package manager is already installed during NODEJS installation)
+    > npm init -y (-y so it wont ask you question it will just automatically create everything without the questions)
+10. When you press enter, you can see the contents of the package JSON that it just created. 
+11. Now close the terminal
+12. Open the server directory folder and now we can see a package json file and it has those contents. 
+13. Now we need to use the node package WS and you can see that's a node.js websocket library (npmjs.com/package/ws)
+14. To intall the WS, open the terminal and > npm i ws (this will add the ws dependency which is websockets for node) 
+15. Now look and see if we already have it listed dependencies here in package json.
+16. Now make some changes: 
+    - "name": "chatapp"
+    - "scripts": {
+        "start": "node ."
+    }
+    (this will launch our app when i type npm start on the terminal)
+
+17. Now, we are ready to create our basic node.js server for websockets. 
+
+------------------
+1. Create a new file once again in the server folder and call it index.js  or 'websocket.js'
+2. Inside this index.js file let us start by defining WS. We need to requre WS. And that's that module we just installed as a dependency for websockets
+    - const ws = require('ws')
+3. Define also our server and inside of it we need to go ahead and pass an object that has the port we want to run the server on. In our case, port: '3000'
+    - const server = new ws.Server({ port: '3000'})
