@@ -43,3 +43,57 @@ How do we create one how do we use them?
     - const ws = require('ws')
 3. Define also our server and inside of it we need to go ahead and pass an object that has the port we want to run the server on. In our case, port: '3000'
     - const server = new ws.Server({ port: '3000'})
+4. Now use that server and have a connection established with websockets the we'll be essentially listening for this socket and then we come over with a function and inside this function here is where we actually listen for a message. Then we will take that message once again with a function. Now inside of here we can just say socket.send() and let's send that same message back. Use a templayte literal ${} to pass in the value of message. So whatever the server receives it's just going to essentially echo and send it back to whoever sent it. So we can comeback and visit, go ahead an log that message and you might be surprised how the message logs on the server. So take a look that as well. So that is how you create a basic websocket.
+    - server.on('connection', socket => {
+    socket.on('message', message => {
+        console.log(message)
+        socket.send(`${message}`)
+    })
+})
+
+
+5. Create Your Frontend App 
+    - index.html 
+    - styles.css
+    - app.js
+6. In my index.html 
+    - Emmet Abbreviation of !
+    - Alt Z to wrap everything on screen size 
+    - title: websockets
+    - <link href="styles.css" rel="stylesheet">
+    - <script defer src="app.js"></script 
+    (we set the defer for our app.js so it won't load the JS until everything else is essentially loaded. Make sure we have the DOM loaded before we load JavaScript that's important. )
+    - Create a form where you can input your message and send or submit it to the server form>input,button
+    - Create a list where you can display your messages that we receive back from the server. <ul/>
+7. In my styles.css
+8. In my app.js 
+    a. Define socket and set this equal to a new WebSocket() on the client side now ofcourse this is all for the browser. Let's have our localhost for our development environment. Then we established before that the server is going to be on port 3000
+    b. Define a function called send message. This function might receive an event. So put the e there for event
+    c. Say e.preventDefault() bc we might submit a form that has our message and we don't want to reload the page. Submit form without reloading the page.
+    d. Inside of the sendMessage function we also define our input from our HTML then let's check for a value. 
+    e. So if we have input value then we can take action we'ss say that socket.send() and we will send the input.value 
+    f. Then after that we'll say input.value is going to be equal to nothing once again. Because after we send it we want to erase what's in the input 
+    g. Then after that, we will put the focus back on the input 
+9. We want to use this function a couple of times right?  So target the form and addEventListener to that and we are listening for the 'submit' event of the form and we are going to call our sendMessage function
+    - this is when we click the send button or when we press enter
+10. Now we should listen for messages that we may receive from the server. target your server messages by targeting socket and lsitening to message. If we get a message it's an event object but we can destructure that here and you get the event.Data so we just destructure that to data. then we use an arrow for our function. 
+11. Now inside the function, we create a new element inside our ul element in html using js. 'li'
+12. we store our data to our li.textContent. that data is the message form the server
+13. now target our <ul> and append our li 
+14. Check the server message: it's a buffer message. When we send something and we log it on the server we get a buffer message so what if you actually want to read that message in a console log on the server as well?
+15. So work on the buffer as well. get the buffer message and turn it into string then console log it. 
+
+
+
+
+
+
+// To run the app, run the server first 
+1. Open Terminal (ctrl + `)
+2. Make sure you are still inside your server folder directory 
+    < cd server
+3. Start the npm 
+    < npm start
+    click enter
+4. Open your Liver Server in your index.html 
+5. create second instance; separate windows pls. make sure all are broadcasting to each other.
